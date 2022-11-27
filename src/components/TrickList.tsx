@@ -1,16 +1,22 @@
 import type { FC } from 'react';
+import type { ITrick } from '../wraps/About.store';
 import React from 'react';
-import type { IPeople } from '../types/types';
 import './TrickList.css';
 
-const TrickList: FC<IPeople> = (props) => {
-  const { name, height, mass, gender } = props;
+interface ITrickList {
+  trick: ITrick;
+}
+
+const TrickList: FC<ITrickList> = (props) => {
+  // eslint-disable-next-line react/destructuring-assignment
+  const { point } = props.trick;
+
   return (
     <div className="trickMain">
       <div className="trick-item">
         <div className="points">
           <div className="points-num">
-            <div className="span">1500</div>
+            <div className="span">{point}</div>
           </div>
         </div>
         <div className="name">Artem Pidor</div>

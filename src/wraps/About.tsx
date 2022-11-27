@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Header from './header/Header';
 import TrickTable from './TrickTable';
-import './About.scss';
 import GameWindow from '../components/about/GamemodeWindow/GameWindow';
 import FilterWindow from '../components/about/FilterWindow/FilterWindow';
+import { AboutStore } from './About.store';
+import './About.scss';
 
 const About = () => {
+  const store = useMemo(() => new AboutStore(), []);
+
+  const { loadTricksAsync, filteringTricks } = store;
+
+  useEffect(() => {
+    loadTricksAsync();
+  }, []);
+
   return (
     <div>
       <Header />
-      <FilterWindow />
+      <FilterWindow filteringTricks={filteringTricks} />
       <GameWindow />
 
       <div className="about-wrap">
-        <TrickTable />
+        <TrickTable store={store} />
       </div>
     </div>
   );

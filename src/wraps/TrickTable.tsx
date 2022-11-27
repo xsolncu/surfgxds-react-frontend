@@ -1,8 +1,18 @@
-import React from 'react';
-import Tricks from '../types/types';
+import type { FC } from 'react';
+import type { AboutStore } from './About.store';
+import TrickList from '../components/TrickList';
 import './TrickTable.scss';
+import { observer } from 'mobx-react-lite';
 
-const TrickTable = () => {
+interface ITrickTable {
+  store: AboutStore;
+}
+
+const TrickTable: FC<ITrickTable> = (props) => {
+  const { store } = props;
+
+  const { state } = store;
+
   return (
     <main>
       <div className="tricks-table">
@@ -17,11 +27,13 @@ const TrickTable = () => {
           <span className="best">BEST</span>
         </div>
         <div className="tricks-list">
-          <Tricks />
+          {state.filteredTricks.map((trick) => (
+            <TrickList key={trick.id} trick={trick} />
+          ))}
         </div>
       </div>
     </main>
   );
 };
 
-export default TrickTable;
+export default observer(TrickTable);

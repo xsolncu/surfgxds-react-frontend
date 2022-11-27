@@ -1,8 +1,21 @@
-import React from 'react';
-import './FilterWindow.scss';
+import type { FC } from 'react';
+import type { IRange, IFilteringTricks } from './FilterWindow.store';
+import { FilterWindowStore } from './FilterWindow.store';
 import MultiRangeSlider from './RangeSlider/MultiRangeSlider';
+import { useMemo } from 'react';
+import './FilterWindow.scss';
 
-const FilterWindow = () => {
+interface IFilterWindow {
+  filteringTricks: IFilteringTricks;
+}
+
+const FilterWindow: FC<IFilterWindow> = (props) => {
+  const { filteringTricks } = props;
+  const store = useMemo(() => new FilterWindowStore(filteringTricks), []);
+
+  const { state, setRange } = store;
+  const { range } = state;
+
   return (
     <div className="filter-window-main">
       <div className="filter-window-main-content">
@@ -10,13 +23,7 @@ const FilterWindow = () => {
       </div>
       <div className="filter-window-content">
         <span className="filter-window-points">points</span>
-        <MultiRangeSlider
-          min={0}
-          max={1000}
-          onChange={({ min, max }: { min: number; max: number }) =>
-            console.log(`min = ${min}, max = ${max}`)
-          }
-        />
+        <MultiRangeSlider {...range} onChange={(value: IRange) => setRange(value)} />
       </div>
     </div>
   );
