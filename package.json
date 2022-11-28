@@ -1,22 +1,39 @@
 {
-  "name": "js",
-  "version": "0.1.0",
+  "name": "surfgxds-react-frontend",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "pnpm lint:ts && pnpm lint:scss",
+    "lint:ts": "eslint \"./**/*.{ts,tsx}\"",
+    "lint:scss": "stylelint \"./**/*.scss\" --allow-empty-input",
+    "lint:fix": "eslint --fix \"./**/*.{ts,tsx}\" && stylelint --fix \"./**/*.scss\" --allow-empty-input",
+    "lint:staged": "lint-staged --debug",
+    "format": "prettier -c \"./**/*.{ts,tsx,json,scss,md}\"",
+    "format:fix": "prettier -w \"./**/*.{ts,tsx,json,scss,md}\""
+  },
   "dependencies": {
-    "-": "^0.0.1",
+    "axios": "^1.2.0",
+    "classnames": "^2.3.2",
+    "mobx": "^6.7.0",
+    "mobx-react-lite": "^3.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3"
+  },
+  "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "^7.20.2",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.3",
+    "@types/node": "^18.11.9",
+    "@types/node-sass": "^4.11.3",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
-    "axios": "^1.1.3",
-    "classnames": "^2.3.2",
+    "@vitejs/plugin-react": "^2.2.0",
     "eslint": "^8.28.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -27,43 +44,28 @@
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "mobx": "^6.7.0",
-    "mobx-react-lite": "^3.4.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.3",
-    "react-scripts": "5.0.1",
+    "lint-staged": "^13.0.4",
+    "prettier": "^2.8.0",
+    "sass": "^1.56.1",
+    "stylelint": "^14.15.0",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-recommended-scss": "^8.0.0",
+    "stylelint-config-standard-scss": "^6.1.0",
     "typescript": "^4.9.3",
-    "web-vitals": "^2.1.4"
+    "vite": "^3.2.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint \"./**/*.{ts,tsx}\"",
-    "lint:fix": "eslint --fix \"./**/*.{ts,tsx}\""
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+  "lint-staged": {
+    "src/**/*.+(ts,tsx)": [
+      "prettier --write",
+      "eslint --fix",
+      "tsc-files --pretty --noEmit"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+    "src/**/*.+(scss)": [
+      "stylelint --fix --allow-empty-input"
+    ],
+    "src/**/*.+(ts,tsx,json,scss,md)": [
+      "prettier -c \"./**/*.{ts,tsx,json,scss,md}\""
     ]
-  },
-  "devDependencies": {
-    "@types/node-sass": "^4.11.3",
-    "sass": "^1.56.1"
   }
 }
