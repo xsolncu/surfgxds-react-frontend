@@ -1,0 +1,117 @@
+main {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: 0 0 15px 2.3px #303741;
+}
+
+.tricks-table {
+  width: 100%;
+  max-width: 1000px;
+  padding: 10px 25px 25px;
+  background-color: #303741;
+  border-radius: 15px;
+}
+
+.trickMain {
+  padding: 0 5px 0 0;
+  margin-top: 5px;
+  border: 1px solid #6a7584;
+  border-radius: 20px;
+}
+
+.tricks-list {
+  margin-top: 30px;
+}
+
+.tricks-header,
+.trick-item {
+  position: relative;
+  display: grid;
+  grid-template: 'points name time speed completes length index' auto / 1fr 1fr 1fr 1fr 1fr 0.5fr 0.5fr;
+  gap: 5px;
+  margin: 5px 0;
+  color: #d9d9d9;
+  vertical-align: middle;
+
+  .points {
+    grid-area: points;
+
+    .points-num {
+      position: relative;
+      margin-left: 10px;
+      border-radius: 15px;
+
+      span {
+        margin-right: 117px;
+        text-align: center;
+      }
+
+      &::after {
+        position: absolute;
+        top: -35%;
+        left: -10px;
+        display: block;
+        float: left;
+        width: 50px;
+        height: 28px;
+        color: red;
+        content: '';
+        border: 1px solid #d9d9d9;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  .name {
+    grid-area: name;
+  }
+
+  .time {
+    display: flex;
+    grid-area: time;
+    justify-content: flex-end;
+    margin-right: 25px;
+  }
+
+  .speed {
+    display: flex;
+    grid-area: speed;
+    justify-content: flex-start;
+    margin-left: 25px;
+  }
+
+  .completes {
+    display: flex;
+    grid-area: completes;
+    justify-content: center;
+  }
+
+  .length {
+    display: flex;
+    grid-area: length;
+    justify-content: flex-end;
+  }
+
+  .index {
+    display: flex;
+    grid-area: index;
+    justify-content: flex-end;
+  }
+
+  .best {
+    position: absolute;
+    top: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 0.8rem;
+  }
+}
+
+.tricks-header {
+  padding-top: 15px;
+  padding-bottom: 5px;
+}
